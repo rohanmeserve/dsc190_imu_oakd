@@ -56,9 +56,9 @@ class IMU:
             self.imu.setMaxBatchReports(10)
 
             # Link plugins IMU -> XLINK
-            self.imu.out.link(xlinkOut.input)
+            self.imu.out.link(self.xlinkOut.input)
 
-            self.device = dai.Device(pipeline)
+            self.device = dai.Device(self.pipeline)
             self.imuQueue = self.device.getOutputQueue(name="imu", maxSize=50, blocking=False)
             self.baseTs = None
 
@@ -120,8 +120,8 @@ class IMU:
                     gyroTs = gyroValues.getTimestampDevice()
                     if self.baseTs is None:
                         self.baseTs = acceleroTs if acceleroTs < gyroTs else gyroTs
-                    acceleroTs = self.timeDeltaToMilliS(acceleroTs - baseTs)
-                    gyroTs = self.timeDeltaToMilliS(gyroTs - baseTs)
+                    acceleroTs = self.timeDeltaToMilliS(acceleroTs - self.baseTs)
+                    gyroTs = self.timeDeltaToMilliS(gyroTs - self.baseTs)
 
                     imuF = "{:.06f}"
                     tsF  = "{:.03f}"
