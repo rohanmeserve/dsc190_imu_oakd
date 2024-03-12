@@ -158,11 +158,11 @@ if __name__ == "__main__":
     iter = 0
     import sys
     sensor_type = SENSOR_OAKDPRO 
-    #dlp_setting = DLP_SETTING_DISABLED
-    #if len(sys.argv) > 1:
-    #    sensor_type = sys.argv[1]
-    #if len(sys.argv) > 2:
-    #    dlp_setting = int(sys.argv[2])
+    dlp_setting = DLP_SETTING_DISABLED
+    if len(sys.argv) > 1:
+        sensor_type = sys.argv[1]
+    if len(sys.argv) > 2:
+        dlp_setting = int(sys.argv[2])
 
     p   = IMU(sensor=sensor_type)
     while iter < 100:
