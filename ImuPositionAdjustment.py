@@ -51,8 +51,7 @@ class PositionEstimator:
         dt = curr_time - self.last_update_time
 
         # update stored position
-        self.x += self.vx * dt
-        self.y += self.vy * dt
+        self.x, self.y = self.v + self.vx*dt, self.y + self.vy*dt
 
         # update time for next update
         self.last_update_time = curr_time
